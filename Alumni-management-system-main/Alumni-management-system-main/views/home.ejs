@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>job details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  
+    
+    <style>
+      body {
+	margin-top: 60px;
+	font-size: 14px;
+	font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+	background-color: #E5E9ED;
+}
+.btn:hover,
+.btn:focus,
+.btn:active{
+    outline: 0 !important;
+}
+/* entire container, keeps perspective */
+.card-container {
+	  -webkit-perspective: 800px;
+   -moz-perspective: 800px;
+     -o-perspective: 800px;
+        perspective: 800px;
+        margin-bottom: 30px;
+}
+/* flip the pane when hovered */
+.card-container:not(.manual-flip):hover .card,
+.card-container.hover.manual-flip .card{
+	-webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+ -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+
+.card-container.static:hover .card,
+.card-container.static.hover .card {
+	-webkit-transform: none;
+-moz-transform: none;
+ -o-transform: none;
+    transform: none;
+}
+/* flip speed goes here */
+.card {
+	 -webkit-transition: -webkit-transform .5s;
+   -moz-transition: -moz-transform .5s;
+     -o-transition: -o-transform .5s;
+        transition: transform .5s;
+-webkit-transform-style: preserve-3d;
+   -moz-transform-style: preserve-3d;
+     -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	-webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+     -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+		-webkit-transform: rotateY( 180deg );
+   -moz-transform: rotateY( 180deg );
+     -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+        z-index: 3;
+}
+
+.back .btn-simple{
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+}
+/*        Style       */
+
+
+.card{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+.card-container, .front, .back {
+	width: 100%;
+	height: 420px;
+	border-radius: 4px;
+}
+.card .cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+.card .cover img{
+    width: 100%;
+}
+.card .user{
+    border-radius: 50%;
+    display: block;
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+}
+.card .user img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+
+.card .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+.card .content .main {
+    min-height: 160px;
+}
+.card .back .content .main {
+    height: 215px;
+}
+.card .name {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+.card h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+.card .profession{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.card .footer {
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    margin: 30px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+.card .footer .social-links{
+    font-size: 18px;
+}
+.card .footer .social-links a{
+    margin: 0 7px;
+}
+.card .footer .btn-simple{
+    margin-top: -6px;
+}
+.card .header {
+    padding: 15px 20px;
+    height: 90px;
+}
+.card .motto{
+    border-bottom: 1px solid #EEEEEE;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.card .stats-container{
+	width: 100%;
+	margin-top: 50px;
+}
+.card .stats{
+	display: block;
+	float: left;
+	width: 33.333333%;
+	text-align: center;
+}
+
+.card .stats:first-child{
+	border-right: 1px solid #EEEEEE;
+}
+.card .stats:last-child{
+	border-left: 1px solid #EEEEEE;
+}
+.card .stats h4{
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+.card .stats p{
+	color: #777777;
+}
+
+/*       Fix bug for IE      */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .front, .back{
+        -ms-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+
+    .back {
+        visibility: hidden;
+        -ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+    }
+    .front{
+        z-index: 4;
+    }
+    .card-container:not(.manual-flip):hover .back,
+    .card-container.manual-flip.hover .back{
+        z-index: 5;
+        visibility: visible;
+    }
+}
+
+
+    </style>
+  </head>
+  <body>
+    <br>
+    <div class="col-lg-12" style="margin-left: 15px;"> <a href="job" class="btn btn-primary">Go Back</a></div>
+    <br>
+
+    <h1 style="text-align: center; color: rgb(196, 117, 32);">Job Details</h1>
+      <table class="table table-striped table-bordered border-primary">
+        <caption style="margin-left: 15px;">List of users</caption>
+        <tbody>
+          <div class="container">
+            <% for(var i=0; i<jobdetails.length; i+=3){ %>
+              <div class="row mb-3">
+                <% for(var j=i; j<i+3 && j<jobdetails.length; j++){ %>
+
+                  <div class="col-md-4 col-sm-6">
+                    <div class="card-container">
+                    <div class="card">
+                      <div class="front">
+                      <div class="content">
+                        <div class="main">
+                          <h5 class="card-title" style="text-align: center;margin-top: 20px;">JOB CARD</h5>
+                          <p class="card-text" style="margin-left: 40px; margin-top: 20px;">COMPANY : <%= jobdetails[j].company%></p>
+                          <p class="card-text" style="margin-left: 40px;">EXPERIENCE REQUIRED : <%= jobdetails[j].experience%></p>
+                          <p class="card-text" style="margin-left: 40px;">POST : <%= jobdetails[j].post%></p>
+                          <p class="card-text" style="margin-left: 40px;">PLACE : <%= jobdetails[j].place%></p>
+                        </div>
+                        <div class="footer">
+                        <div class="rating">
+                          <i class="fa fa-reply"></i> View Description...
+                        </div>
+                        <br>
+                        <div class="rating">
+                          <i class="fa fa-reply"></i> Hover into this card...
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="back">
+                      <div class="header">
+                        <h5 class="motto">"Be so good they can't ignore you..."</h5>
+                      </div>
+                      <div class="content">
+                        <div class="main">
+                        <h4 class="text-center">Job Description</h4>
+                        <p class="card-text" style="margin-left: 40px; margin-top: 20px;"><%= jobdetails[j].description%></p>
+                        <div class="stats-container">
+                          <div class="stats">
+                          <h4><%= jobdetails[j].followers%></h4>
+                          <p>Followers</p>
+                          </div>
+                          <div class="stats">
+                          <h4><%= jobdetails[j].following%></h4>
+                          <p>Following</p>
+                          </div>
+                          <div class="stats">
+                          <h4><%= jobdetails[j].projects%></h4>
+                          <p>Projects</p>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+                  
+
+          
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </tbody>
+      </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+      const rotateBtns = document.querySelectorAll('.rotate-btn');
+
+rotateBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.card').classList.toggle('card-rotate');
+  });
+});
+    </script>
+    </div>
+  </body>
+</html>
